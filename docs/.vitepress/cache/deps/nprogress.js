@@ -1,6 +1,6 @@
 import {
   __commonJS
-} from "./chunk-5WWUZCGV.js";
+} from "./chunk-G3PMV62Z.js";
 
 // node_modules/.pnpm/nprogress@0.2.0/node_modules/nprogress/nprogress.js
 var require_nprogress = __commonJS({
@@ -34,8 +34,7 @@ var require_nprogress = __commonJS({
         var key, value;
         for (key in options) {
           value = options[key];
-          if (value !== void 0 && options.hasOwnProperty(key))
-            Settings[key] = value;
+          if (value !== void 0 && options.hasOwnProperty(key)) Settings[key] = value;
         }
         return this;
       };
@@ -47,8 +46,7 @@ var require_nprogress = __commonJS({
         var progress = NProgress.render(!started), bar = progress.querySelector(Settings.barSelector), speed = Settings.speed, ease = Settings.easing;
         progress.offsetWidth;
         queue(function(next) {
-          if (Settings.positionUsing === "")
-            Settings.positionUsing = NProgress.getPositioningCSS();
+          if (Settings.positionUsing === "") Settings.positionUsing = NProgress.getPositioningCSS();
           css(bar, barPositionCSS(n, speed, ease));
           if (n === 1) {
             css(progress, {
@@ -76,23 +74,19 @@ var require_nprogress = __commonJS({
         return typeof NProgress.status === "number";
       };
       NProgress.start = function() {
-        if (!NProgress.status)
-          NProgress.set(0);
+        if (!NProgress.status) NProgress.set(0);
         var work = function() {
           setTimeout(function() {
-            if (!NProgress.status)
-              return;
+            if (!NProgress.status) return;
             NProgress.trickle();
             work();
           }, Settings.trickleSpeed);
         };
-        if (Settings.trickle)
-          work();
+        if (Settings.trickle) work();
         return this;
       };
       NProgress.done = function(force) {
-        if (!force && !NProgress.status)
-          return this;
+        if (!force && !NProgress.status) return this;
         return NProgress.inc(0.3 + 0.5 * Math.random()).set(1);
       };
       NProgress.inc = function(amount) {
@@ -134,8 +128,7 @@ var require_nprogress = __commonJS({
         };
       })();
       NProgress.render = function(fromStart) {
-        if (NProgress.isRendered())
-          return document.getElementById("nprogress");
+        if (NProgress.isRendered()) return document.getElementById("nprogress");
         addClass(document.documentElement, "nprogress-busy");
         var progress = document.createElement("div");
         progress.id = "nprogress";
@@ -176,10 +169,8 @@ var require_nprogress = __commonJS({
         }
       };
       function clamp(n, min, max) {
-        if (n < min)
-          return min;
-        if (n > max)
-          return max;
+        if (n < min) return min;
+        if (n > max) return max;
         return n;
       }
       function toBarPerc(n) {
@@ -197,7 +188,7 @@ var require_nprogress = __commonJS({
         barCSS.transition = "all " + speed + "ms " + ease;
         return barCSS;
       }
-      var queue = function() {
+      var queue = /* @__PURE__ */ function() {
         var pending = [];
         function next() {
           var fn = pending.shift();
@@ -207,11 +198,10 @@ var require_nprogress = __commonJS({
         }
         return function(fn) {
           pending.push(fn);
-          if (pending.length == 1)
-            next();
+          if (pending.length == 1) next();
         };
       }();
-      var css = function() {
+      var css = /* @__PURE__ */ function() {
         var cssPrefixes = ["Webkit", "O", "Moz", "ms"], cssProps = {};
         function camelCase(string) {
           return string.replace(/^-ms-/, "ms-").replace(/-([\da-z])/gi, function(match, letter) {
@@ -220,13 +210,11 @@ var require_nprogress = __commonJS({
         }
         function getVendorProp(name) {
           var style = document.body.style;
-          if (name in style)
-            return name;
+          if (name in style) return name;
           var i = cssPrefixes.length, capName = name.charAt(0).toUpperCase() + name.slice(1), vendorName;
           while (i--) {
             vendorName = cssPrefixes[i] + capName;
-            if (vendorName in style)
-              return vendorName;
+            if (vendorName in style) return vendorName;
           }
           return name;
         }
@@ -243,8 +231,7 @@ var require_nprogress = __commonJS({
           if (args.length == 2) {
             for (prop in properties) {
               value = properties[prop];
-              if (value !== void 0 && properties.hasOwnProperty(prop))
-                applyCss(element, prop, value);
+              if (value !== void 0 && properties.hasOwnProperty(prop)) applyCss(element, prop, value);
             }
           } else {
             applyCss(element, args[1], args[2]);
@@ -257,14 +244,12 @@ var require_nprogress = __commonJS({
       }
       function addClass(element, name) {
         var oldList = classList(element), newList = oldList + name;
-        if (hasClass(oldList, name))
-          return;
+        if (hasClass(oldList, name)) return;
         element.className = newList.substring(1);
       }
       function removeClass(element, name) {
         var oldList = classList(element), newList;
-        if (!hasClass(element, name))
-          return;
+        if (!hasClass(element, name)) return;
         newList = oldList.replace(" " + name + " ", " ");
         element.className = newList.substring(1, newList.length - 1);
       }

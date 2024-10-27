@@ -1,4 +1,4 @@
-import "./chunk-5WWUZCGV.js";
+import "./chunk-G3PMV62Z.js";
 
 // node_modules/.pnpm/storejs@2.0.6/node_modules/storejs/dist/store.esm.js
 function isJSON(obj) {
@@ -52,8 +52,7 @@ function dealIncognito(storage2) {
     };
     storage2 = inMemoryStorage;
   } finally {
-    if (storage2.getItem(_KEY) === _VALUE)
-      storage2.removeItem(_KEY);
+    if (storage2.getItem(_KEY) === _VALUE) storage2.removeItem(_KEY);
   }
   return storage2;
 }
@@ -68,8 +67,7 @@ Store.prototype = {
     if (key && !isJSON(key)) {
       storage.setItem(key, stringify(val));
     } else if (isJSON(key)) {
-      for (var a in key)
-        this.set(a, key[a]);
+      for (var a in key) this.set(a, key[a]);
     }
     return this;
   },
@@ -126,8 +124,7 @@ Store.prototype = {
   search: function search(str) {
     var arr = this.keys(), dt = {};
     for (var i = 0, len = arr.length; i < len; i++) {
-      if (arr[i].indexOf(str) > -1)
-        dt[arr[i]] = this.get(arr[i]);
+      if (arr[i].indexOf(str) > -1) dt[arr[i]] = this.get(arr[i]);
     }
     return dt;
   }
@@ -136,21 +133,15 @@ var _Store = null;
 function store(key, data) {
   var argm = arguments;
   var dt = null;
-  if (!_Store)
-    _Store = Store();
-  if (argm.length === 0)
-    return _Store.get();
+  if (!_Store) _Store = Store();
+  if (argm.length === 0) return _Store.get();
   if (argm.length === 1) {
-    if (typeof key === "string")
-      return _Store.get(key);
-    if (isJSON(key))
-      return _Store.set(key);
+    if (typeof key === "string") return _Store.get(key);
+    if (isJSON(key)) return _Store.set(key);
   }
   if (argm.length === 2 && typeof key === "string") {
-    if (!data)
-      return _Store.remove(key);
-    if (data && typeof data === "string")
-      return _Store.set(key, data);
+    if (!data) return _Store.remove(key);
+    if (data && typeof data === "string") return _Store.set(key, data);
     if (data && isFunction(data)) {
       dt = null;
       dt = data(key, _Store.get(key));
@@ -165,8 +156,7 @@ function store(key, data) {
   }
   return store;
 }
-for (a in Store.prototype)
-  store[a] = Store.prototype[a];
+for (a in Store.prototype) store[a] = Store.prototype[a];
 var a;
 export {
   store as default

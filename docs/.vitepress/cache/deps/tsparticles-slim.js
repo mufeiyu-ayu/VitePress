@@ -51,7 +51,7 @@ import {
   setRangeValue,
   tsParticles
 } from "./chunk-TBLUOB55.js";
-import "./chunk-5WWUZCGV.js";
+import "./chunk-G3PMV62Z.js";
 
 // node_modules/.pnpm/tsparticles-particles.js@2.12.0/node_modules/tsparticles-particles.js/esm/marcbruederlin/Particles.js
 var Particles = class _Particles {

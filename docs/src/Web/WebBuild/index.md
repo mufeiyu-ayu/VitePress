@@ -1,4 +1,3 @@
-# 前端基建
 
 ### 为啥要做前端基建？
 作为一个刚入行没多久的前端新人，在之前公司的项目中，我发现前端工程化的重要性。在项目中，我们需要不断的重复一些工作，比如：代码规范、代码风格、代码质量、代码的构建、代码的部署等等。这些工作虽然看起来不是很重要，但是却是我们在项目中必不可少的一部分。如果我们能够将这些工作自动化，那么我们就可以将更多的精力放在业务逻辑的开发上，提高我们的开发效率，减少我们的开发成本。
@@ -536,6 +535,16 @@ pnpm add -P <package> # 添加依赖到peerDependencies
 
 ```
 
+**项目只允许使用 pnpm**
+```json
+{
+  "scripts": {
+    "preinstall": "npx only-allow pnpm"
+  }
+}
+```
+现在，每当有人运行npm install或yarn时，他们都会收到错误消息，并且安装将无法继续。
+
 **npm,pnpm 与 npx 的区别**
 
 通过上面的文章我们大体知道执行 npm 或者 pnpm 运行命令或者安装的原理，npx 其实可以达到同样的效果，但是有一点不同
@@ -602,7 +611,7 @@ init 之后会在项目根目录下创建.changeset文件夹，md 包含所有�
   "commit": false,  
   "fixed": [],
   "linked": [],
-  "access": "public", //当使用npm 组织时，必须设置为 public 
+  "access": "public", //当使用npm 组织时。若要发布公共包则要设置 public (私有包要收钱妈的)
   "baseBranch": "master", // 以项目当前分支为准
   "updateInternalDependencies": "patch",
   "ignore": []

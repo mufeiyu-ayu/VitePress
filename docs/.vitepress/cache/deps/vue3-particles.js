@@ -6,8 +6,8 @@ import {
   defineComponent,
   nextTick,
   openBlock
-} from "./chunk-67UUJLDS.js";
-import "./chunk-5WWUZCGV.js";
+} from "./chunk-DJRIY62Y.js";
+import "./chunk-G3PMV62Z.js";
 
 // node_modules/.pnpm/vue3-particles@2.12.0/node_modules/vue3-particles/dist/vue3-particles.es.js
 var e;

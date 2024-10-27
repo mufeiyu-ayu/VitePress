@@ -122,6 +122,9 @@ export default defineConfig({
     // 写端口号
     server: {
       port: 5179,
+      hmr: {
+        overlay: false
+      },
     },
 
     plugins: [
