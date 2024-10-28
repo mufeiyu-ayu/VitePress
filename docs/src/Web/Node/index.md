@@ -99,7 +99,7 @@ path.join('foo', {}, 'bar');2
 ```
 
 
-### path.resolve([...paths])
+### 4. path.resolve([...paths])
 **path.resolve()方法将一个或多个路径或路径片段解析为绝对路径,如果没有传递path段， path.resolve()将返回当前工作目录的绝对路径。**
 ```js
 path.resolve('/foo', 'bar', 'baz/asdf', 'quux', '..');
@@ -117,3 +117,18 @@ path.resolve('wwwroot', 'static_files/png/', '../gif/image.gif');
 // If the current working directory is /home/myself/node,
 // this returns '/home/myself/node/wwwroot/static_files/gif/image.gif'
 ```
+
+
+### 5.path.parse(path)
+**path.parse()方法将路径解析为对象,既返回指定路径的对象详细信息**
+```js
+    path.parse('/foo/bar/baz/asdf/quux.html');
+    // Returns: {
+    //   root: "/",
+    //   dir: "/foo/bar/baz/asdf",
+    //   base: "quux.html",
+    //   ext: ".html",
+    //   name: "quux"
+    // }
+   ```
+
