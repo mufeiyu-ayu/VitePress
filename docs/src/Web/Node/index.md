@@ -132,3 +132,53 @@ path.resolve('wwwroot', 'static_files/png/', '../gif/image.gif');
     // }
    ```
 
+## 6.process
+process 是 Node.js 中用于处理进程的模块。
+**常用 API**
+
+### 1.process.arch
+    
+**process.arch方法返回当前系统的架构**
+```js
+console.log(process.arch) // x64
+```
+
+### 2.process.argv
+**process.argv方法返回命令行参数**
+```js
+// node index.ts --aa --bb
+console.log(process.argv) // [ '/usr/local/bin/node', '/Users/UserName/ayu/node/learn-commander/src/global-api/index.js', '--aa', '--bb' ]
+```
+
+### 3.process.cwd
+    
+**process.cwd方法返回当前工作目录(可在 ESM环境下使用)**
+```js
+    console.log(process.cwd()) // /Users/UserName/ayu/node/learn-commander
+```
+
+### 4.process.exit
+**process.exit方法终止当前进程**
+```js
+    process.exit()
+```
+
+### 5.process.kill
+**process.kill方法用于终止指定的进程**
+```js
+const pid = process.pid
+process.kill(pid)
+```
+
+### 6.process.env
+**用于读取操作系统所有的环境变量，也可以修改和查询环境变量。**
+可以用来区分开发环境与生产环境
+```js
+// pnpm install cross-env --save-dev
+/*
+* "dev": "cross-env NODE_ENV=development webpack --config build/webpack.config.js",
+*"build": "cross-env NODE_ENV=production webpack --config build/webpack.config.js"
+*”
+* */
+console.log(process.env.NODE_ENV)
+```

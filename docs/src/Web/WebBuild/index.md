@@ -655,3 +655,37 @@ pnpm changeset publish
 导航到根目录执行npm config set access public --global
 
 - 在全局.npmrc中将包访问权限设置为public将影响您创建的所有包，包括您个人帐户范围内的包以及您组织范围内的包。
+
+
+
+### typescript
+**配置文件解析**
+```json
+{
+  "extends":"@ayu-mu/tsconfig/tsconfig.base.json", // 基础配置
+  "compilerOptions": {
+    "target":"ESNext", // 将 ts 转义为那个版本
+    "baseUrl": ".", // 根目录
+    "rootDir": ".", // 输入文件的根目录
+    "paths": {
+      "@/*": [
+        "src/*" // 用于配置模块解析的别名
+      ]
+    },
+    "types": ["vite/client"], // 添加 vite 客户端类型
+    "declaration": true, // 开启生成声明文件的功能
+    "emitDeclarationOnly": true, // 只生成声明文件，不生成 js 输出
+    "outDir": "temp", // 输出目录
+    "stripInternal": true // 去除内置模块
+    "useDefineForClassFields":"true" // 用于解决类字段类型不正确的问题,使用最先版现代的 js 标准行为，
+    "noEmit":false, // 是否禁止生成编译后的.js,.ts 建
+  },
+  "references": [
+    { "path": "./tsconfig.app.json" },
+    { "path": "./tsconfig.node.json" }
+  ] // 用于 建立项目间的依赖关系，适用于需要指定编译顺序或依赖的场景 , 适合在大型项目或 monorepo 中使用，因为它会告诉 TypeScript 编译器哪些项目之间存在依赖关系。编译时指定不同路径即可
+}
+
+```
+
+### vite 
