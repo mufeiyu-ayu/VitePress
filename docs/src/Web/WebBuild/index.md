@@ -667,15 +667,21 @@ pnpm changeset publish
 **配置文件解析**
 ```json
 {
+  "globalEnv": ["IMPORTANT_GLOBAL_VARIABLE"]
   "tasks": { 
     "build": { 
       "dependsOn": ["^build"],
        "outputs": ["dist/**"],
+         "env": ["MY_API_URL", "MY_API_KEY"],
        "inputs": [
          "src/**",                   // 源码目录
          "package.json",             // 项目配置
        ]
        "cache":false 
+    },
+    "dev"{
+      "cache":"false",
+      "persistent": true
     } 
   }
 }
@@ -686,7 +692,12 @@ pnpm changeset publish
 4. ^微语法告诉Turborepo从依赖关系图的底部开始运行任务。如果您的应用程序依赖于名为ui的库，并且该库有一个构建任务，则ui中的构建脚本将首先运行。一旦成功完成，应用程序中的构建任务将运行。**(有时，您可能需要确保同一个包中的两个任务按特定顺序运行。例如，您可能需要在您的库中运行一个生成任务，然后才能在同一个库中运行一个测试任务。为此，请将dependsOn键中的脚本指定为普通字符串（不带^）。)**
 5. "outputs"主要用于定义缓存的文件和目录
 6. "inputs"主要作用是让 Turbo 通过跟踪任务的输入文件或文件夹的变化，来判断是否需要重新执行这个任务。如果 inputs 中的文件发生了变化（例如文件内容修改、添加或删除），Turbo 就会认为任务的输入已经改变，因此需要重新执行这个任务。
-
+7. 在开发状态下由于会频繁更改代码因此缓存的优势很小，使用 cache:false 禁用
+8. **persistent：true** 告诉Turborepo保持任务运行直到你停止它。这个键作为一个信号，让你的终端UI将任务视为长时间运行和交互式的。此外，它还可以防止您意外地依赖于不会退出的任务1
+**使用技巧**
+- 当在某个模块内部时可以执行 turbo [command] turbo 会自动限制范围到该包
+- turbo build --filter=@repo/ui快速筛选您感兴趣的特定软件包。
+- ！！！ **turbo对于在单个包内执行build，lint 帮助也行不如 vite，webpack 等构建工具，turbo 的优势在于全局构建，因此在项目发布，初始化，以及提交代码使用 turbo 最佳**
 7. cache 禁用缓存
 ### typescript
 **配置文件解析**
