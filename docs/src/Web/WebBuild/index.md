@@ -402,7 +402,7 @@ git flow release start 1.1.5 # 开启release [1.1.5]分支
 git flow release finish 1.1.5 # 完成release [1.1.5]分支
 ```
 
-### package.josn
+### package.json
 [package.json文档](https://docs.npmjs.com/cli/v10/configuring-npm/package-json)
 ```json
 {
@@ -672,7 +672,7 @@ pnpm changeset publish
     "build": { 
       "dependsOn": ["^build"],
        "outputs": ["dist/**"],
-         "env": ["MY_API_URL", "MY_API_KEY"],
+      "env": ["MY_API_URL", "MY_API_KEY"],
        "inputs": [
          "src/**",                   // 源码目录
          "package.json",             // 项目配置
@@ -699,6 +699,35 @@ pnpm changeset publish
 - turbo build --filter=@repo/ui快速筛选您感兴趣的特定软件包。
 - ！！！ **turbo对于在单个包内执行build，lint 帮助也行不如 vite，webpack 等构建工具，turbo 的优势在于全局构建，因此在项目发布，初始化，以及提交代码使用 turbo 最佳**
 7. cache 禁用缓存
+
+### 文件目录规范
+- “*”  => 匹配单层目录/文件
+- "**" => 匹配任意层级目录/文件
+- "some/dir" => 匹配“some/dir”目录下的所有内容
+- "some/dir/**" => 匹配“some/dir”目录及其以下的所有内容
+- "*.js" => 匹配所有以.js结尾的文件
+- "!" => 排除
+### synkpack
+**Syncpack是一个用于管理多个package.json文件的命令行工具。[官方文档](https://jamiemason.github.io/syncpack/guide/getting-started/)** 
+
+**常用命令**
+```bash
+pnpm syncpack list # 列出当前目录下的package.json的所有依赖性
+pnpm syncpack list-mismatches # 检查版本号是否匹配
+pnpm syncpack lint-semver-ranges # 列出依赖版本问题(检查版本号前面的符号是否一致：)
+pnpm syncpack fix-semver-ranges # 修复依赖版本
+pnpm syncpack format # 格式化 package.json
+pnpm syncpack fix-mismatches --source 'packages/**' # source指定范围在 packages下的包
+pnpm syncpack fix-mismatches --config ./config/.syncpackrc # 使用 config 发现配置文件
+```
+**优点**
+- 查找并修复依赖项版本不匹配。
+- 强制实施单一版本策略，或创建具有单独策略的分区。
+- 从npm注册表中查找并转储过时的版本
+- 禁止使用某些依赖项：任何地方，或特定的地方。
+- 定义在何处使用精确或松散的semver范围的规则。
+- 将包指定为特定依赖项版本的真实源。
+- 对package.json文件进行一致的排序和格式化。
 ### typescript
 **配置文件解析**
 ```json
