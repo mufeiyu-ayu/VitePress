@@ -707,7 +707,7 @@ pnpm changeset publish
 - "some/dir/**" => 匹配“some/dir”目录及其以下的所有内容
 - "*.js" => 匹配所有以.js结尾的文件
 - "!" => 排除
-### synkpack
+### syncpack
 **Syncpack是一个用于管理多个package.json文件的命令行工具。[官方文档](https://jamiemason.github.io/syncpack/guide/getting-started/)** 
 
 **常用命令**
@@ -728,6 +728,17 @@ pnpm syncpack fix-mismatches --config ./config/.syncpackrc # 使用 config 发�
 - 定义在何处使用精确或松散的semver范围的规则。
 - 将包指定为特定依赖项版本的真实源。
 - 对package.json文件进行一致的排序和格式化。
+
+### Nx
+[Nx官方文档](https://nx.dev/getting-started/intro)
+
+**常用命令**
+```bash
+nx graph # 查看项目依赖关系
+nx build @tuskdesign/zoo # 构建项目
+nx serve @tuskdesign/zoo # 启动项目
+```
+
 ### typescript
 **配置文件解析**
 ```json
