@@ -701,7 +701,7 @@ pnpm changeset publish
 7. cache 禁用缓存
 
 ### 文件目录规范
-- “*”  => 匹配单层目录/文件
+- "*"  => 匹配单层目录/文件
 - "**" => 匹配任意层级目录/文件
 - "some/dir" => 匹配“some/dir”目录下的所有内容
 - "some/dir/**" => 匹配“some/dir”目录及其以下的所有内容
@@ -757,8 +757,8 @@ nx serve @tuskdesign/zoo # 启动项目
     "declaration": true, // 开启生成声明文件的功能
     "emitDeclarationOnly": true, // 只生成声明文件，不生成 js 输出
     "outDir": "temp", // 输出目录
-    "stripInternal": true // 去除内置模块
-    "useDefineForClassFields":"true" // 用于解决类字段类型不正确的问题,使用最先版现代的 js 标准行为，
+    "stripInternal": true, // 去除内置模块
+    "useDefineForClassFields":"true", // 用于解决类字段类型不正确的问题,使用最先版现代的 js 标准行为，
     "noEmit":false, // 是否禁止生成编译后的.js,.ts 建
   },
   "references": [
@@ -770,3 +770,96 @@ nx serve @tuskdesign/zoo # 启动项目
 ```
 
 ### vite 
+
+**源码目录结构**
+```
+vite/
+├── packages/
+│   ├── vite/          # 核心包
+│   │   ├── src/       # 源码目录
+│   │   │   ├── node/  # Node.js 端相关代码
+│   │   │   └── client/# 浏览器端相关代码
+│   ├── plugin-vue/    # Vue 插件
+│   ├── plugin-react/  # React 插件
+│   └── create-vite/   # 项目脚手架
+├── playground/        # 测试用例和示例
+└── docs/             # 文档
+```
+好的,我来为您规划一个详细的 Vite 源码学习路线:
+
+入口和启动流程
+
+
+packages/vite/src/node/cli.ts (命令行入口)
+packages/vite/src/node/index.ts (API 入口)
+packages/vite/src/node/constants.ts (常量定义)
+
+
+配置系统
+
+
+packages/vite/src/node/config.ts (配置加载和处理)
+packages/vite/src/node/plugins/config.ts (配置插件)
+
+
+开发服务器 (Dev Server)
+
+
+packages/vite/src/node/server/index.ts (服务器创建)
+packages/vite/src/node/server/middlewares (中间件)
+packages/vite/src/node/server/ws.ts (WebSocket)
+packages/vite/src/node/server/hmr.ts (热更新)
+
+
+核心插件系统
+
+
+packages/vite/src/node/plugins/index.ts (插件注册)
+packages/vite/src/node/plugins/asset.ts (资源处理)
+packages/vite/src/node/plugins/css.ts (CSS 处理)
+packages/vite/src/node/plugins/esbuild.ts (esbuild 集成)
+packages/vite/src/node/plugins/resolve.ts (模块解析)
+
+
+构建系统
+
+
+packages/vite/src/node/build/index.ts (构建入口)
+packages/vite/src/node/build/buildPluginContainer.ts (构建插件容器)
+packages/vite/src/node/optimizer/index.ts (依赖优化)
+
+
+客户端代码
+
+
+packages/vite/src/client/client.ts (客户端 HMR)
+packages/vite/src/client/env.ts (环境变量)
+
+
+类型系统
+
+
+packages/vite/types/* (类型定义)
+
+
+工具函数
+
+
+packages/vite/src/node/utils.ts (通用工具)
+
+关键学习建议:
+
+先理解整体架构和工作流程
+重点关注配置系统、插件机制、Dev Server
+结合具体场景深入理解源码
+理解与其他工具(esbuild/rollup)的集成方式
+
+
+Vite server 目录包含开发服务器的核心实现：
+
+index.ts - 主服务器逻辑，创建 http 服务器
+middlewares/ - 中间件，处理请求转换
+transformRequest.ts - 文件转换逻辑
+ws.ts - WebSocket 服务，处理 HMR（热更新）
+hmr.ts - 热更新实现
+moduleGraph.ts - 模块依赖图管理
